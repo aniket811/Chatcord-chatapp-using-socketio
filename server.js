@@ -7,7 +7,7 @@ const {userJoin, getCurrentuser, userLeave, getroomUsers}=require('./utils/users
 
 app=express()
 const server=http.createServer(app);
-
+const PORT=4500 || process.env.PORT
 app.use(express.static(path.join(__dirname,'public')))
 const io=socketio(server)
 const botName='Chatcord bot'
@@ -29,7 +29,7 @@ io.on('connection',socket=>{
   
     socket.on('chatMessage',(msg)=>{
         const user=getCurrentuser(socket.id)
-        console.log(msg)
+        // console.log(msg)
         io.to(user.room).emit('message',formatMessage(user.username,msg))
         io.to(user.room).emit('roomusers',{
             room:user.room,
@@ -52,6 +52,6 @@ io.on('connection',socket=>{
         }
     })
 })
-server.listen(4000,()=>{
+server.listen(PORT,()=>{
     console.log('Server has started running');
 })
