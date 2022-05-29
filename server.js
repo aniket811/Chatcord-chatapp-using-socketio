@@ -33,7 +33,7 @@ io.on('connection',socket=>{
         io.to(user.room).emit('message',formatMessage(user.username,msg))
         io.to(user.room).emit('roomusers',{
             room:user.room,
-            user:getroomUsers(user.room)
+            user:getroomUsers(user.room)    
         })
 
     })
