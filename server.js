@@ -19,7 +19,7 @@ io.on('connection',socket=>{
         // Broadcast 
     socket.broadcast.to(user.room).emit('message',formatMessage(botName,`A ${user.username} has joined the chat !`));
     })
-    console.log('New server connected')
+    // console.log('New server connected')
     // A user connect 
     socket.emit('message',formatMessage(botName,'Welcome to Chatcord '));
         // Broadcast 
@@ -53,5 +53,5 @@ io.on('connection',socket=>{
     })
 })
 server.listen(PORT,()=>{
-    console.log('Server has started running');
+    console.log(`Server has started running on ${PORT}`);
 })
